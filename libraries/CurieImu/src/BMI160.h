@@ -303,6 +303,7 @@ typedef enum{
     NEGATIVE,
 } BMI160Direction;
 
+
 /**
  * Interrupt Latch Mode options
  * @see setInterruptLatch()
@@ -554,6 +555,7 @@ class BMI160Class {
         int getInterruptBits(int reg); // get raw interrrupt status registers
         int getInterruptStatus(BMI160Feature feature);
 
+        uint8_t getStepDetectionMode();
         void setStepDetectionMode(BMI160StepMode mode);
         long getStepCount();
         boolean getStepCountEnabled();

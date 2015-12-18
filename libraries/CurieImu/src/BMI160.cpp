@@ -573,48 +573,10 @@ void BMI160Class::setGyroOffset(int axis, int offset){
     readGyro(axis); /* Read and discard the next data value */
 }
 
-/** Get free-fall event acceleration threshold.
- * This register configures the detection threshold for Free Fall event
- * detection. The unit of int_low_th is 1LSB = 7.81mg (min: 3.91mg). Free Fall
- * is detected when the absolute value of the accelerometer measurements for the
- * three axes are each less than the detection threshold. This condition
- * triggers the Free-Fall (low-g) interrupt if the condition is maintained for
- * the duration specified in the int_low_dur field of the INT_LOWHIGH[0]
- * register (@see CURIE_IMU_RA_INT_LOWHIGH_0)
+/** Resets the current number of detected step movements (Step Count) to 0.
  *
- * For more details on the Free Fall detection interrupt, see Section 2.6.7 of the
- * BMI160 Data Sheet.
- *
- * @return Current free-fall acceleration threshold value (LSB = 7.81mg, 0 = 3.91mg)
- * @see CURIE_IMU_RA_INT_LOWHIGH_1
- *
-*/
-
-/** Get shock event acceleration threshold.
- * This register configures the detection threshold for Shock event
- * detection. The unit of threshold is dependent on the accelerometer
- * sensitivity range (@see getFullScaleAccelRange()):
- *
- * <pre>
- * Full Scale Range | LSB Resolution
- * -----------------+----------------
- * +/- 2g           |  7.81 mg/LSB (0 =  3.91mg)
- * +/- 4g           | 15.63 mg/LSB (0 =  7.81mg)
- * +/- 8g           | 31.25 mg/LSB (0 = 15.63mg)
- * +/- 16g          | 62.50 mg/LSB (0 = 31.25mg)
- * </pre>
- *
- * Shock is detected when the absolute value of the accelerometer measurements
- * for any of the three axes exceeds the detection threshold. This condition
- * triggers the Shock (high-g) interrupt if the condition is maintained without
- * a sign-change for the duration specified in the int_high_dur field of the
- * INT_LOWHIGH[3] register (@see CURIE_IMU_RA_INT_LOWHIGH_3).
- *
- * For more details on the Shock (high-g) detection interrupt, see Section 2.6.8 of the
- * BMI160 Data Sheet.
- *
- * @return Current shock acceleration threshold value
- * @see CURIE_IMU_RA_INT_LOWHIGH_4
+ * @see getStepCount()
+ * @see BMI160_RA_CMD
  */
 
 /** Get motion detection event acceleration threshold.
